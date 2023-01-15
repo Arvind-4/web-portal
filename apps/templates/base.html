@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon"
+          type="image/x-icon"
+          href="{% static 'favicon/favicon.ico' %}">
+    <link rel="stylesheet"
+          href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+          crossorigin="anonymous"/>
+    {% include "css/main.css.html" %}
+    {% block css %}
+    {% endblock css %}
+  </head>
+  <body>
+    {% include "components/navbar.html" %}
+    {% block content %}
+    {% endblock content %}
+    {% include "components/footer.html" %}
+    <script>
+      let themeToggleBtn = document.getElementById('themeSwitcher');
+      let lightThemeIcon = document.getElementById('theme-toggle-light-icon');
+      let darkThemeIcon = document.getElementById('theme-toggle-dark-icon');
+      let theme = localStorage.getItem('theme');
+      themeToggleBtn.addEventListener('click', () => {
+        if (theme === 'dark') {
+          document.body.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          theme = 'light';
+          lightThemeIcon.classList.remove('hidden');
+          darkThemeIcon.classList.add('hidden');
+        } else {
+          document.body.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          theme = 'dark';
+          lightThemeIcon.classList.add('hidden');
+          darkThemeIcon.classList.remove('hidden');
+        }
+      });
+      if (theme === 'dark') {
+        document.body.classList.add('dark');
+        lightThemeIcon.classList.add('hidden');
+        darkThemeIcon.classList.remove('hidden');
+      } else {
+        document.body.classList.remove('dark');
+        lightThemeIcon.classList.remove('hidden');
+        darkThemeIcon.classList.add('hidden');
+      }
+    </script>
+  </body>
+</html>

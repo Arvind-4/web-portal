@@ -1,0 +1,15 @@
+<div class="flex overflow-x-auto h-32 md:h-80 w-100 mx-auto overflow-y-hidden">
+  {% for blog in blogs %}
+    <section class="ml-auto flex-shrink-0 rounded-full border-0">
+      <span>
+        <a href="{% url 'blog-detail' blog.id %}">
+          {% if blog.image %}
+            <img class="h-32 md:h-80 hover:scale-105 hover:rounded-lg border-0 "
+                 src="{{ blog.image.url }}"
+                 alt="{{ blog.title }}">
+          {% endif %}
+        </a>
+      </span>
+    </section>
+  {% endfor %}
+</div>

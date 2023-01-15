@@ -1,0 +1,15 @@
+bin/
+lib/
+.env
+apps/public/css
+*.sqlite3
+.pytest_cache/
+
+staticfiles_build/
+
+poetry.lock
+
+__pycache__/
+
+node_modules/
+package-lock.json

@@ -1,0 +1,74 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
+    },
+    {
+      "src": "build.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/blog/(.*)",
+      "dest": "app.py"
+    },
+    {
+      "src": "/about/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/contact/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/search/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/sign-in/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/sign-up/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/sign-out/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/admin/",
+      "dest": "app.py"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "app.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "app.py"
+    }
+  ]
+}

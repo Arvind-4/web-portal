@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+      <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+        <header class="mb-4 lg:mb-6 not-format">
+          <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+            {{ blog.title }}
+          </h1>
+        </header>
+        {{ blog.body|safe }}
+        <section class="not-format">
+          <form class="mb-6" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+              {% if field.name == 'body' %}
+                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                  <label for="comment" class="sr-only">Your comment</label>
+                  {{ field }}
+                </div>
+              {% endif %}
+            {% endfor %}
+            <button type="submit"
+                    class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+              Post comment
+            </button>
+          </form>
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+              {% with comments.count as total_comments %}{{ total_comments }} comment{{ total_comments|pluralize }}{% endwith %}
+            </h2>
+          </div>
+          {% if not blog.comments.all %}
+            No comments yet
+          {% else %}
+            {% for comment in blog.get_comments %}
+              {% include 'comments/comment.html' with comment=comment %}
+            {% endfor %}
+          {% endif %}
+        </section>
+      </article>
+    </div>
+  </main>
+  <script>
+    function handleReply(response_id) {
+      const reply_form_container = document.querySelector(`#reply-form-container-${response_id}`)
+      if (reply_form_container) {
+        reply_form_container.style.display = 'block';
+      }
+    }
+
+    function handleCancel(response_id) {
+      const reply_form_container = document.querySelector(`#reply-form-container-${response_id}`)
+      if (reply_form_container) {
+        reply_form_container.style.display = 'none';
+      }
+    }
+  </script>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block css %}
+  {% include "css/main.css.html" %}
+{% endblock css %}
+{% block content %}
+  <main class="main-content min-h-screen">
+    {% include "blog/components/slider.html" with blogs=top5Blogs %}
+    <section class="bg-white dark:bg-gray-900">
+      <div aria-label="Related articles"
+           class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
+        <div class="min-h-screen px-4 mx-auto max-w-screen-xl">
+          <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Some of our Latest Articles</h2>
+          <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            {% for blog in restBlogs %}
+              {% include "blog/components/article.html" with blog=blog %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}
