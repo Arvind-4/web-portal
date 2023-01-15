@@ -44,4 +44,4 @@ It is important to note that the target audience of the portal are students and 
 [Change Log](https://github.com/Arvind-4/web-portal/commits/main).
 
 ## License:
-This Project is [MIT LICENSE](https://github.com/Arvind-4/Chatapp/blob/main/LICENSE).
+This Project is [MIT LICENSE](https://github.com/Arvind-4/web-portal/blob/main/LICENSE).
