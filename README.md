@@ -1,7 +1,7 @@
 
-# Blog
+# Web Portal
 
-Real Time Blog App Using Django, JavaScript, Tailwind CSS and much more..
+Real Time Web Portal App Using Django, JavaScript, Tailwind CSS and much more..
 
 ## Tech Stack:
 
